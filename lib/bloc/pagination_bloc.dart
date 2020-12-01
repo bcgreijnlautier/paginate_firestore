@@ -89,12 +89,10 @@ class PaginationBloc extends Bloc<PaginationEvent, PaginationState> {
             : _query;
     try {
       final querySnapshot = await localQuery.limit(_limit).get();
-      print(querySnapshot.docs.length);
       _lastDocument =
           querySnapshot.docs.isNotEmpty ? querySnapshot.docs.last : null;
       return querySnapshot.docs;
     } on PlatformException catch (exception) {
-      print(exception);
       rethrow;
     }
   }
